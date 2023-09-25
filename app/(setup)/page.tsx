@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { InitialModal } from "@/components/modals/InitialModal";
 import { db } from "@/lib/db";
 import { initialProfile } from "@/lib/initialProfile";
 
@@ -21,7 +22,7 @@ async function SetupPage() {
   }
 
   return (
-    <div>Create Server</div>
+    <InitialModal />
   )
 }
 
