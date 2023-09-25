@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { FileUpload } from "@/components/FileUpload";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -43,7 +44,7 @@ export function InitialModal() {
   const isLoading = form.formState.isSubmitting;
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-
+    console.log(values);
   }
 
   useEffect(() => {
@@ -72,7 +73,21 @@ export function InitialModal() {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <div className="space-y-8 px-6">
               <div className="flex items-center justify-center text-center">
-                Image Upload
+                <FormField
+                  control={form.control}
+                  name="imageUrl"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <FileUpload
+                          endpoint="serverImage"
+                          value={field.value}
+                          onChange={field.onChange}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
               </div>
 
               <FormField
